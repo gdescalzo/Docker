@@ -1,15 +1,12 @@
-version: "3.1"
+version: '3.9'
 
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
-    user: '0:0'
-    container_name: sqlserver2019
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
       - 1433:1433
-    environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: Babas2015!
-      SSQL_PID: Express
     volumes:
-      - ~/.docker/sqlserver-data:/var/opt/mssql
+      - ~/apps/mssql/data:/var/lib/mssqlql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=mssql1Ipw
