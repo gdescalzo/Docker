@@ -1,4 +1,4 @@
-# The script sets the sa password and start the SQL Service 
+# The script sets the sa password and start the SQL Service
 # Also it attaches additional database from the disk
 # The format for attach_dbs
 
@@ -19,16 +19,15 @@ if($ACCEPT_EULA -ne "Y" -And $ACCEPT_EULA -ne "y")
 	Write-Verbose "ERROR: You must accept the End User License Agreement before this container can start."
 	Write-Verbose "Set the environment variable ACCEPT_EULA to 'Y' if you accept the agreement."
 
-    exit 1 
+    exit 1
 }
 
 # start the service
 Write-Verbose "Starting SQL Server"
-start-service MSSQL`$SQLEXPRESS
+start-service MSSQLSERVER
 
-if($sa_password -eq "Babas2015!") {
-    $secretPath = $env:sa_password_path
-    if (Test-Path $secretPath) {
+if($sa_password -eq "_") {
+    if (Test-Path $env:sa_password_path) {
         $sa_password = Get-Content -Raw $secretPath
     }
     else {
@@ -52,19 +51,38 @@ if ($null -ne $dbs -And $dbs.Length -gt 0)
     Write-Verbose "Attaching $($dbs.Length) database(s)"
 	    
     Foreach($db in $dbs) 
-    {            
+    {
+        if($db.saskey.length -gt 0)
+        { 
+            $saskey = $true 
+        }
+        else
+        { 
+            $saskey = $false 
+        }
+            
         $files = @();
         Foreach($file in $db.dbFiles)
         {
-            $files += "(FILENAME = N'$($file)')";           
+            $files += "(FILENAME = N'$($file)')";
+            
+            # check for a saskey and create one credential per blob Container                  
+            if($saskey)
+            {
+                $blob_container = (Split-Path $file).Replace('\','/');                                         
+                $sql_credential = "IF NOT EXISTS (SELECT 1 FROM SYS.CREDENTIALS WHERE NAME = '" + $blob_container + "') BEGIN CREATE CREDENTIAL [" + $blob_container + "] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET= '" + $db.saskey + "' END;"              
+            
+                Write-Verbose "Invoke-Sqlcmd -Query $($sql_credential)"
+                & sqlcmd -Q $sql_credential
+            }
         }
 
         $files = $files -join ","
-        $sqlcmd = "IF EXISTS (SELECT 1 FROM SYS.DATABASES WHERE NAME = '" + $($db.dbName) + "') BEGIN EXEC sp_detach_db [$($db.dbName)] END;CREATE DATABASE [$($db.dbName)] ON $($files) FOR ATTACH;"
+        $sqlcmd = "sp_detach_db ""$($db.dbName)"";CREATE DATABASE ""$($db.dbName)"" ON $($files) FOR ATTACH ;"
 
         Write-Verbose "Invoke-Sqlcmd -Query $($sqlcmd)"
         & sqlcmd -Q $sqlcmd
-    }
+	}
 }
 
 Write-Verbose "Started SQL Server."
