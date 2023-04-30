@@ -88,8 +88,7 @@
 
 ## Etapa 1
 
-###################################################################
-Etapa 1: <br />
+################################################################### <br />
 
 1- descargar contenedor <br />
 2- ejecutar el contenedor en background <br />
@@ -136,8 +135,7 @@ E- Exportamos el contenedor <br />
 
 ## Etapa 2
 
-######################################################################
-Etapa 2:<br />
+###################################################################### <br />
 
 A- importamos la imagen del contenedor desde el disco local <br />
 B- listamos las imagenes <br />
