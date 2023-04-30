@@ -37,7 +37,7 @@
 ### Ejemplo
 
          root@ultron:~# docker login https://registry.access.redhat.com
-         Username: TEA_josebisconti
+         Username: username
          Password:
          WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
          Configure a credential helper to remove this warning. See
@@ -54,7 +54,7 @@
          Login Succeeded
 
          root@ultron:~# docker login https://registry.connect.redhat.com
-         Username: TEA_josebisconti
+         Username: username
          Password:
          WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
          Configure a credential helper to remove this warning. See
@@ -89,15 +89,17 @@
 ## Etapa 1
 
 ###################################################################
-Etapa 1:
-A- descargar contenedor
-B- ejecutar el contenedor en background
- B.1 - abriendo puertos
- B.2 - cambiando el hostname del container
- B.3 - cambiamos en nombre del container
-C- Listamos todos los containers (prendidos y apagados)
-D- ingresamos al contenedor
-E- Exportamos el contenedor
+Etapa 1: <br />
+
+1- descargar contenedor <br />
+2- ejecutar el contenedor en background <br />
+ B.1 - abriendo puertos <br />
+ B.2 - cambiando el hostname del container <br />
+ B.3 - cambiamos en nombre del container <br />
+C- Listamos todos los containers (prendidos y apagados) <br />
+D- ingresamos al contenedor <br />
+E- Exportamos el contenedor <br />
+
 ###################################################################
 
 ## A- Descargamos el contenedor
@@ -135,12 +137,13 @@ E- Exportamos el contenedor
 ## Etapa 2
 
 ######################################################################
-Etapa 2:
-A- importamos la imagen del contenedor desde el disco local
-B- listamos las imagenes
-C- ejecutamos el contenedor en Background
-D- listamos los contenedores
-E- Ingresamos al contenedor
+Etapa 2:<br />
+
+A- importamos la imagen del contenedor desde el disco local <br />
+B- listamos las imagenes <br />
+C- ejecutamos el contenedor en Background <br />
+D- listamos los contenedores <br />
+E- Ingresamos al contenedor <br />
 #####################################################################
 
 ### A- Importamos un contenedor
