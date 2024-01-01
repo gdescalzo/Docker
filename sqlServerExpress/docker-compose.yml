@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  sql_server:
+  mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       SA_PASSWORD: "ChangeMe"
@@ -10,4 +10,4 @@ services:
       - "1433:1433"
     restart: always
     volumes:
-      - D:\Docker\Volumes:/var/opt/mssql/data
+      - D:\Docker\Volumes\mssql:/var/opt/mssql/data
