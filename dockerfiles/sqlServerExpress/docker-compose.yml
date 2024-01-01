@@ -1,12 +1,13 @@
-version: '3.9'
+version: '3.8'
 
 services:
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - 1433:1433
-    volumes:
-      - ~/apps/mssql/data:/var/lib/mssqlql/data
+  sql_server:
+    image: mcr.microsoft.com/mssql/server
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=test
+      SA_PASSWORD: "ChangeMe"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    restart: always
+    volumes:
+      - D:\Docker\Volumes:/var/opt/mssql/data
