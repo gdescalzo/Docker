@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    user: "0:0"  # Grafana's UID and GID
+    ports:
+      - "3000:3000"
+    volumes:
+      - Z:\grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret  # Set your admin password here
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+    networks:
+      grafana-net:
+        ipv4_address: 10.166.6.200  
+
+networks:
+  grafana-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.166.6.0/24
