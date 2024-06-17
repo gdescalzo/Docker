@@ -4,22 +4,22 @@ services:
   grafana:
     image: grafana/grafana-enterprise
     container_name: grafana
-    user: "0:0"  # Grafana's UID and GID
+    user: "0:0"
     ports:
       - "3000:3000"
+      - "9090:9090"  # Ensure this maps the Prometheus port
     volumes:
       - Z:\grafana:/var/lib/grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=secret  # Set your admin password here
+      - GF_SECURITY_ADMIN_PASSWORD=secret
       - GF_INSTALL_PLUGINS=grafana-clock-panel
       - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      - GF_SERVER_HTTP_ADDR=0.0.0.0
+    cap_add:
+      - NET_ADMIN
     networks:
-      grafana-net:
-        ipv4_address: 10.166.6.200  
+      - bridge
 
 networks:
-  grafana-net:
+  bridge:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 10.166.6.0/24
