@@ -19,6 +19,7 @@ services:
       - NET_ADMIN
     networks:
       - bridge
+    restart: always  # Ensure the container restarts on reboot
 
 networks:
   bridge:
