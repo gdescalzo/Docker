@@ -113,11 +113,14 @@ Añade el nombre de la carpeta correspondiente a la prueba que deseas realizar. 
 http://localhost:8081/teclab2024_clase1/
 ```
 
+![teclab2024_clase1](./img/5.png)
+
 - Para acceder a la prueba de teclab2024_clase2, escribe:
 
 ```bash
 http://localhost:8081/teclab2024_clase2/
 ```
+![teclab2024_clase2](./img/4.png)
 
 ### Explicación
 
