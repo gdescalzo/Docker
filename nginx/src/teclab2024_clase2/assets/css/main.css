@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+}
+p {
+     font-style: italic;
+}
+span {
+    color: blue; 
+    font-weight: bold;
+}
+
+#productos {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+#productos th:first-child {
+    width: 50px;
+}
+
+#productos tbody tr td{
+    text-align: center;
+}
+
+#productos tr{
+    height: 40px;
+}
+
+#productos thead th{
+    border-bottom: 1px solid #333;
+}
+
+#productos tbody tr{
+    border-top: 1px solid #ddd;
+}
+
+#productos .gris{
+    background-color: #eee;
+}
+
+.btn-agregar{
+    background-color: #2780b1;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid #098ddf;
+    margin: 20px;
+}

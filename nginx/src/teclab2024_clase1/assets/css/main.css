@@ -1,0 +1,12 @@
+ h1 {
+    text-align: center;
+}
+
+.italica{
+     font-style: italic;
+}
+
+.resaltado{
+    color: blue; 
+    font-weight: bold;
+}
