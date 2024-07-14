@@ -11,6 +11,7 @@ services:
     volumes:
       - Z:\jenkins_home:/var/jenkins_home
       - ./init.groovy.d:/var/jenkins_home/init.groovy.d  # Mount the initialization script directory
+      - D:\Repos\Teclab\Programacion_web\APIs:/mnt/d/Repos/Teclab/Programacion_web/APIs:rw  # Ensure read-write access
     environment:
       - JENKINS_OPTS=--prefix=/jenkins
       - JENKINS_ADMIN_PASSWORD=your_password  # Replace with your desired password
